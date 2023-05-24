@@ -46,6 +46,7 @@
     .button-container {
       text-align: center;
     }
+    
 
     .button-container button {
       padding: 10px 20px;
@@ -55,26 +56,23 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
+      margin-top: -10px;
     }
 
     .button-container button:hover {
       background-color: #45a049;
     }
-    #step-2 {
-      text-align: center;
-    }
-    #step-2 p {
-      color: red;
-      font-size: 1.2rem;
-    }
-    #step-2 button{
-      padding: 7px 25px;
-      background-color: #45a049;
+    a{
       color: white;
-      border: none;
+      padding: 10px 20px;
+      /* margin-top: 20px; */
+      margin: 30px;
+      
+      text-decoration: none;
+      background-color: #45a049;
     }
-    .hide{
-      display: none;
+    .submitbutton{
+      display: flex;
     }
 
   </style>
@@ -96,15 +94,19 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
       </div>
-      <div class="button-container">
-        <button type="submit">Register</button>
+      <div class="form-group">
+        <label for="image">Add your picture:</label>
+        <input type="file" name="image" id="image">
+      </div>
+      <div class="submitbutton">
+        <div class="button-container">
+          <button type="submit">Register</button>
+        </div>
+        <div class="button-container">
+          <a href="./login.html">Login</a>
+        </div>
       </div>
     </form>
-  </div>
-  <div id="step-2" class="hide">
-       <h1></h1>
-       <p>You can check your Email id and Your Password on Your Email Id</p>
-       <button>Login</button>
   </div>
 </body>
 

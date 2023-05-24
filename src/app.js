@@ -8,6 +8,44 @@ const nodemailer = require('nodemailer');
 
 
 
+const fetch = require('fetch');
+ 
+async function  getposts(){
+  const post = await fetch('https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09');
+  const response = await post.json();
+  console.log(response);
+}
+getposts()
+
+
+
+
+// const axios = require('axios');
+
+// const apiKey = '/user';
+
+// axios.get('https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09', {
+//   headers: {
+//     'Authorization': `Bearer ${apiKey}`
+//   }
+// })
+// .then(response => {
+
+//   console.log(response.data);
+// })
+// .catch(error => {
+  
+//   console.error(error);
+// });
+
+
+
+
+
+
+
+
+
 
 // connect to MongoDB
 const uri = 'mongodb://127.0.0.1:27017/';
@@ -48,7 +86,8 @@ app.use(express.static(htmlfile));
 
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html');
+  // res.sendFile('index.html');
+  res.status(201).render("index");
 });
 
 app.listen(port, () => {
@@ -60,25 +99,15 @@ app.get('/form-submit', (req, res) => {
   const user_name = req.query.name;
   const user_email = req.query.email;
   const user_password = req.query.password;
+  const user_image = req.query.image;
 
   const user = {
     name: user_name,
     email: user_email,
-    password: user_password
+    password: user_password,
+    image: user_image
   };
-
-  const myData = {
-    name: 'sam Doe',
-    age: 30,
-    email: 'john@example.com'
-  };
-  
   insertData(user);
-  
-  console.log(user);
-  
-
-
 
 
 
@@ -111,3 +140,25 @@ app.get('/form-submit', (req, res) => {
 
 
 })
+app.get("/login", (req, res) => {
+  res.sendFile("login.html");
+})
+
+
+// const signin = async (req, res) => {
+  
+//   try{
+//     const email = await user.findOne({ email: email});
+//     if(!email){
+//       return res.status(404).json({ message:"user not found"});
+//     }
+//     const matchpassword  = await user.findOne({ password: password});
+//     if(!matchpassword){
+//       return res.status(404).json({ message:"user not found"});
+//     }
+//   }
+// }catch(e){
+//   console.log(e.message);
+// }
+
+

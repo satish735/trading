@@ -10,9 +10,11 @@
   "author": "satish",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "express": "^4.18.2",
     "mongodb": "^5.5.0",
     "mongoose": "^7.2.0",
+    "node-fetch": "^3.3.1",
     "nodemailer": "^6.9.2",
     "nodemon": "^2.0.22",
     "validator": "^13.9.0"
