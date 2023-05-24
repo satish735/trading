@@ -83,3 +83,7 @@ You can use validator to validate user input, such as email addresses, to ensure
 
 All functionalities is working but tradding data is not showm because API is not properly supported
 
+
+
+you have to run this project on http://localhost:3000/
+
