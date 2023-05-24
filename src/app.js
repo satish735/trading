@@ -3,40 +3,60 @@ const path = require('path');
 const fs = require('fs');
 const { MongoClient } = require('mongodb');
 const nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt');
+const app = express();
+app.use(express.json());
+
+
+const axios = require('axios');
+
+const API_KEY = 'https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09?apiKey=AKUtGf7jdIJWjVgwjwTaiOzhTIkrNSLk';
+
+const apiUrl = "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09?apiKey=AKUtGf7jdIJWjVgwjwTaiOzhTIkrNSLk";
+axios.get(apiUrl, {
+  headers: {
+    'Authorization': `Bearer ${API_KEY}`
+  }
+})
+  .then(response => {
+    const data = response.data;
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error.message);
+  });
 
 
 
 
 
-const fetch = require('fetch');
- 
-async function  getposts(){
-  const post = await fetch('https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09');
-  const response = await post.json();
-  console.log(response);
-}
-getposts()
+
+app.post("/login", (req, res) => {
+  res.sendFile("login.html");
+})
+
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  const user = users.find((user) => user.email === email);
+  if (!user) {
+    return res.status(401).json({ message: 'Invalid credentials' });
+  }
+  // Compare passwords
+  bcrypt.compare(password, user.password, (err, result) => {
+    if (err || !result) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign({ userId: user.id, email: user.email }, secretKey, { expiresIn: '1h' });
+    res.json({ token });
+  });
+});
 
 
 
 
-// const axios = require('axios');
 
-// const apiKey = '/user';
-
-// axios.get('https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-01-09/2023-01-09', {
-//   headers: {
-//     'Authorization': `Bearer ${apiKey}`
-//   }
-// })
-// .then(response => {
-
-//   console.log(response.data);
-// })
-// .catch(error => {
-  
-//   console.error(error);
-// });
 
 
 
@@ -61,24 +81,24 @@ client.connect((err) => {
 });
 
 
-  async function insertData(data) {
-    try {
-      const database = client.db('trading');
-      const collection = database.collection('user');
-  
-      // Insert the data
-      const result = await collection.insertOne(data);
-      console.log('Data inserted:', result.insertedId);
-    } catch (error) {
-      console.error('Error inserting data:', error);
-    }
+async function insertData(data) {
+  try {
+    const database = client.db('trading');
+    const collection = database.collection('user');
+
+    // Insert the data
+    const result = await collection.insertOne(data);
+    console.log('Data inserted:', result.insertedId);
+  } catch (error) {
+    console.error('Error inserting data:', error);
   }
-
- 
-  
+}
 
 
-const app = express();
+
+
+
+
 const port = 3000;
 const htmlfile = path.join(__dirname, "../src/html");
 app.use(express.static(htmlfile));
@@ -140,25 +160,8 @@ app.get('/form-submit', (req, res) => {
 
 
 })
-app.get("/login", (req, res) => {
-  res.sendFile("login.html");
-})
 
 
-// const signin = async (req, res) => {
-  
-//   try{
-//     const email = await user.findOne({ email: email});
-//     if(!email){
-//       return res.status(404).json({ message:"user not found"});
-//     }
-//     const matchpassword  = await user.findOne({ password: password});
-//     if(!matchpassword){
-//       return res.status(404).json({ message:"user not found"});
-//     }
-//   }
-// }catch(e){
-//   console.log(e.message);
-// }
+
 
 

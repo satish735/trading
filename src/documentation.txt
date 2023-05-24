@@ -1,0 +1,85 @@
+Introduction:
+The registration and login pages in the trading application are an essential part of user authentication and account management. These pages are built using Node.js and incorporate security measures through JSON Web Token (JWT) implementation. The application also utilizes an API to fetch and display trading data to users.
+
+The registration page allows new users to create an account by providing their name, email, password, and optionally, a profile photo encoded as a base64 string. Upon registration, users receive an email verification link to confirm their account.
+
+The login page provides a secure mechanism for users to authenticate using their registered email and password. The entered credentials are verified against the stored user data, and if successful, a JWT is generated and returned to the user.
+
+To enhance the user experience, the application fetches trading data using an external API, such as the Polygon API. The trading data includes information on stock prices, trades, and other relevant details. The API is integrated into the application to retrieve real-time or historical stock data based on user preferences.
+
+The application leverages the JWT obtained during the login process to authenticate subsequent requests for trading data. The JWT is included in the request headers to ensure secure communication between the application and the API.
+
+By combining user registration and login functionality with JWT authentication and integration of a stock data API, the trading application provides users with a secure and personalized experience, allowing them to access and view trading information relevant to their interests.
+
+
+
+
+In your project, you have implemented the following functionalities:
+
+JWT Authentication:
+
+User registration and login processes are implemented using JWT authentication.
+Upon successful login, a JWT is generated and returned to the user.
+The JWT is used to authenticate subsequent requests to protected routes or API endpoints.
+Email Verification:
+
+After user registration, an email verification process is initiated.
+Users receive an email with a verification link to confirm their account.
+Upon clicking the verification link, the user's account is marked as verified in the system.
+Fetching Data with API:
+
+Your project integrates with an external API, such as the Polygon API, to retrieve trading data.
+The API is accessed using HTTP requests, typically using the GET method.
+API endpoints are called with appropriate parameters to fetch specific data, such as stock prices or trades.
+The received data is processed and displayed in your application's user interface.
+
+
+
+I have used type of library 
+
+axios:
+
+Axios is a popular library used for making HTTP requests from Node.js.
+It simplifies the process of sending HTTP requests and handling responses.
+You can use axios to fetch data from external APIs, such as the Polygon API.
+bcrypt:
+
+Bcrypt is a library used for password hashing and encryption.
+It provides a secure way to store user passwords in your application's database.
+When a user registers or updates their password, bcrypt can be used to hash and securely store the password.
+express:
+
+Express is a fast and minimalistic web framework for Node.js.
+It simplifies the process of building web applications and APIs.
+Express provides features like routing, middleware support, and request/response handling.
+mongodb:
+
+MongoDB is a popular NoSQL database that you have used in your project.
+It is a schema-less database that stores data in JSON-like documents.
+You can use the mongodb library to interact with MongoDB from your Node.js application.
+node-fetch:
+
+Node-fetch is a library that brings the fetch API to Node.js environments.
+It allows you to make HTTP requests from Node.js using a syntax similar to the browser's fetch API.
+You might have used node-fetch to make API requests to fetch trading data.
+nodemailer:
+
+Nodemailer is a library for sending emails from Node.js applications.
+It simplifies the process of sending emails, including email verification emails in your case.
+You can use nodemailer to send email notifications, password reset emails, or any other email functionality in your project.
+nodemon:
+
+Nodemon is a development tool that helps in automatically restarting your Node.js application when changes are detected.
+It eliminates the need to manually stop and start your application during development.
+Nodemon is commonly used to improve the development workflow and enhance productivity.
+validator:
+
+Validator is a library for data validation in Node.js applications.
+It provides various validation functions for strings, numbers, emails, URLs, and more.
+You can use validator to validate user input, such as email addresses, to ensure they meet the required format or pattern.
+
+
+
+
+All functionalities is working but tradding data is not showm because API is not properly supported
+
